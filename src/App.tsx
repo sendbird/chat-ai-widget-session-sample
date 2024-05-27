@@ -15,7 +15,7 @@ const USER_ID = 'ENTER_USER_ID_HERE';
  * Function to issue a session token for a user.
  * This should be implemented on your server to secure your API token.
  * */
-const issueSessionToken = async (userId: string, period = 30 * 60 * 1000): Promise<string> => {
+const issueSessionToken = async (userId: string, expiryDuration = 30 * 60 * 1000): Promise<string> => {
   const url = `https://api-${APP_ID}.sendbird.com/v3/users/${userId}/token`;
   const response = await fetch(url, {
     method: 'POST',
@@ -23,7 +23,7 @@ const issueSessionToken = async (userId: string, period = 30 * 60 * 1000): Promi
       'Content-Type': 'application/json; charset=utf8',
       'Api-Token': API_TOKEN,
     },
-    body: JSON.stringify({ expires_at: Date.now() + period }),
+    body: JSON.stringify({ expires_at: Date.now() + expiryDuration }),
   });
 
   const data = await response.json();
