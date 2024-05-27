@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+# Widget Custom Session Configuration Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository provides detailed instructions on configuring a custom session handler for the AI Widget, particularly useful for integrating authentication with your own API.
+It includes examples for both React and a embed HTML setup.
 
-Currently, two official plugins are available:
+## Clone the Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, clone the repository to your local machine:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/sendbird/chat-ai-widget-session-sample
+cd chat-ai-widget-session-sample
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## React Example
+
+### Installation and Execution
+
+1. **Install Dependencies**
+
+   Ensure you have `yarn` installed. If not, install it from [Yarn's official website](https://yarnpkg.com/).
+
+   ```bash
+   yarn install
+   ```
+
+2. **Run the Development Server**
+
+   ```bash
+   yarn dev
+   ```
+
+3. **Configure the Widget**
+
+   In your `src/App.tsx` file, replace the placeholder values with your actual `APP_ID`, `BOT_ID`, `API_TOKEN`, and `USER_ID` obtained from Sendbird:
+
+   ```typescript
+   const APP_ID = 'ENTER_APPLICATION_ID_HERE';
+   const BOT_ID = 'ENTER_BOT_ID_HERE';
+   const API_TOKEN = 'ENTER_API_TOKEN_HERE';
+   const USER_ID = 'ENTER_USER_ID_HERE';
+   ```
+
+Refer to the comments in the provided code for more information.
+
+## Embed Example
+
+### How to Run
+
+1. **Open the `embed-example.html` file**
+
+   This file contains the HTML and JavaScript necessary to embed the `ChatAiWidget`. Simply open the file in your browser.
+
+2. **Configure the Widget**
+
+   In the script section of `embed-example.html`, replace the placeholder values with your actual `APP_ID`, `BOT_ID`, `API_TOKEN`, and `USER_ID`:
+
+   ```javascript
+   const APP_ID = 'ENTER_APPLICATION_ID_HERE';
+   const BOT_ID = 'ENTER_BOT_ID_HERE';
+   const API_TOKEN = 'ENTER_API_TOKEN_HERE';
+   const USER_ID = 'ENTER_USER_ID_HERE';
+   ```
+
+Refer to the comments in the provided code for more information.
+
+## Security Note
+
+Always implement sensitive operations like session token issuance on your server to protect your API tokens and other sensitive information.
