@@ -771,15 +771,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sendbird/chat-ai-widget@npm:^1.5.11":
-  version: 1.5.11
-  resolution: "@sendbird/chat-ai-widget@npm:1.5.11"
+"@sendbird/chat-ai-widget@npm:^1.5.12":
+  version: 1.5.12
+  resolution: "@sendbird/chat-ai-widget@npm:1.5.12"
   dependencies:
     styled-components: "npm:^5.3.11"
   peerDependencies:
     react: ^16.8.6 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.6 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/a9f0be560df9fecf69d53fd357ad88d52a6fa9b63d8db08a9c90df0e3f5d113e8a32b44c9c9659ccd2e4b9515272b9422fb5c52f9388e193de2112c9914ee340
+  checksum: 10c0/beff02cdedd4d8413c6a1f8683242a131fd59e3a48f2321b330695fe240b40912b9927ed824d8f3dd426a69f71a7a1263a5aa2bec03cea98d979983fee72623f
   languageName: node
   linkType: hard
 
@@ -3148,7 +3148,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "widget-session-sample@workspace:."
   dependencies:
-    "@sendbird/chat-ai-widget": "npm:^1.5.11"
+    "@sendbird/chat-ai-widget": "npm:^1.5.12"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
