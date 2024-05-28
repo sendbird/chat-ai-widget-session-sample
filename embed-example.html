@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic HTML File with Script</title>
+  </head>
+  <body>
+    <h1>Welcome to My Website!</h1>
+    <p>This is a basic HTML file with an added script for a chatbot.</p>
+
+    <script>
+      /**
+       * Documentation links for obtaining API tokens and Application IDs:
+       * API token: https://sendbird.com/docs/chat/platform-api/v3/prepare-to-use-api#2-authentication
+       * Application ID: https://sendbird.com/docs/chat/platform-api/v3/prepare-to-use-api#2-base-url
+       * */
+      const APP_ID = 'ENTER_APPLICATION_ID_HERE';
+      const BOT_ID = 'ENTER_BOT_ID_HERE';
+      const API_TOKEN = 'ENTER_API_TOKEN_HERE';
+      const USER_ID = 'ENTER_USER_ID_HERE';
+
+      /**
+       * Function to issue a session token for a user.
+       * This should be implemented on your server to secure your API token.
+       * */
+      const issueSessionToken = async (userId, expiryDuration = 30 * 60 * 1000) => {
+        const url = `https://api-${APP_ID}.sendbird.com/v3/users/${userId}/token`;
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf8',
+            'Api-Token': API_TOKEN,
+          },
+          body: JSON.stringify({ expires_at: Date.now() + expiryDuration }),
+        });
+
+        const data = await response.json();
+        if (!data.token) throw new Error('Failed to issue a session token');
+
+        console.log('Session token issued:', data.token);
+        return data.token;
+      };
+
+      /**
+       * Embed chatbot script and pass user session configuration as the last argument.
+       * */
+      (function (w, d, s, ...args) {
+        const div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+
+        w.chatbotConfig = args;
+        const f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', APP_ID, BOT_ID, {
+        userId: USER_ID,
+        configureSession: () => ({
+          onSessionTokenRequired: (resolve, reject) => {
+            // Action to take when a session token is required
+            console.log('Session token required');
+            issueSessionToken(USER_ID).then(resolve).catch(reject);
+          },
+          onSessionRefreshed: () => {
+            // Action to take when session is refreshed
+            console.log('Session refreshed');
+          },
+          onSessionError: (err) => {
+            // Action to take when session encounters an error
+            console.error('Session error', err);
+          },
+          onSessionClosed: () => {
+            // Action to take when session is closed
+            console.log('Session closed');
+          },
+        }),
+      });
+    </script>
+  </body>
+</html>
