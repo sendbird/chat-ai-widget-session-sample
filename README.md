@@ -27,7 +27,7 @@ cd chat-ai-widget-session-sample
 2. **Run the Development Server**
 
    ```bash
-   yarn dev
+   yarn start:react
    ```
 
 3. **Configure the Widget**
@@ -47,9 +47,9 @@ Refer to the comments in the provided code for more information.
 
 ### How to Run
 
-1. **Open the `embed-example.html` file**
+1. **Serve the `embed-example` directory**
 
-   This file contains the HTML and JavaScript necessary to embed the `ChatAiWidget`. Simply open the file in your browser.
+   This file contains the HTML and JavaScript necessary to embed the `ChatAiWidget`. Simply run the `yarn start:embed` command.
 
 2. **Configure the Widget**
 
